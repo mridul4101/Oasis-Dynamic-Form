@@ -8,6 +8,11 @@ A simple frontend project in React JS to create a form with dynamic input fields
 - The input fields are disabled in this rendering.
 - Once you click on save, you can play around with selecting the options for the questions.
 - This is only a frontend application, so the data is not persisted once you refresh or close the browser.
+- Find the deployed link here: https://oasis-dynamic-form.netlify.app/
+
+## Demo video
+
+https://user-images.githubusercontent.com/56752104/179354370-2f05352a-dc73-4a3f-b32c-bb452a069d9f.mp4
 
 ## Getting Started with Create React App
 
