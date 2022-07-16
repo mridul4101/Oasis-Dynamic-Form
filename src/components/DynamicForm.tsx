@@ -162,12 +162,14 @@ class DynamicForm extends React.Component<any, any> {
 										<p>
 											{i + 1}. {qstn.question}
 										</p>
-										<FontAwesomeIcon
-											icon={faTrash}
-											onClick={() => {
-												this.removeQuestion(i);
-											}}
-										/>
+										{this.state.isSaved ? null : (
+											<FontAwesomeIcon
+												icon={faTrash}
+												onClick={() => {
+													this.removeQuestion(i);
+												}}
+											/>
+										)}
 									</div>
 
 									{qstn.format === "dropdown" ? (
