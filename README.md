@@ -4,6 +4,7 @@ A simple frontend project in React JS to create a form with dynamic input fields
 - Each question can have multiple options.
 - Options are rendered in a dropdown or checkboxes as required for the assignment, and that can be selected for a particular question.
 - As you keep adding questions by clicking on add question, they keep appearing above.
+- You can also remove a question from the form.
 - The input fields are disabled in this rendering.
 - Once you click on save, you can play around with selecting the options for the questions.
 - This is only a frontend application, so the data is not persisted once you refresh or close the browser.
