@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/DynamicForm.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 class DynamicForm extends React.Component<any, any> {
 	constructor(props: any) {
@@ -19,9 +21,10 @@ class DynamicForm extends React.Component<any, any> {
 		this.resetForm = this.resetForm.bind(this);
 		this.resetState = this.resetState.bind(this);
 		this.submitForm = this.submitForm.bind(this);
+		this.addQuestion = this.addQuestion.bind(this);
 		this.updateOption = this.updateOption.bind(this);
-		this.saveQuestion = this.saveQuestion.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.removeQuestion = this.removeQuestion.bind(this);
 		this.handleCheckboxSelect = this.handleCheckboxSelect.bind(this);
 		this.handleDropdownSelect = this.handleDropdownSelect.bind(this);
 	}
@@ -41,7 +44,14 @@ class DynamicForm extends React.Component<any, any> {
 		this.setState({ options: options });
 	}
 
-	saveQuestion() {
+	addQuestion() {
+		if (
+			this.state.question === "" ||
+			(this.state.options.length === 0 && this.state.newOption === "")
+		) {
+			return;
+		}
+
 		if (this.state.newOption) {
 			let options = this.state.options;
 			options.push(this.state.newOption);
@@ -59,6 +69,12 @@ class DynamicForm extends React.Component<any, any> {
 		questions.push(newQuestion);
 		this.setState({ questions: questions });
 		this.resetState();
+	}
+
+	removeQuestion(index: number) {
+		let questions = this.state.questions;
+		questions.splice(index, 1);
+		this.setState({ questions: questions });
 	}
 
 	resetState() {
@@ -80,23 +96,30 @@ class DynamicForm extends React.Component<any, any> {
 	}
 
 	submitForm() {
-
-        let formData = this.state.questions.map((qstn: { format: string; question: any; selectedOption: any[]; options: { [x: string]: any; }; }) => {
-            if(qstn.format === "dropdown") {
-                return {
-                    question: qstn.question,
-                    selectedOption: qstn.selectedOption[0]
-                };
-            }
-            else {
-                return {
-                    question: qstn.question,
-                    selectedOption: qstn.selectedOption.map((id: string | number) => {
-                        return qstn.options[id];
-                    })
-                };
-            }
-        })
+		let formData = this.state.questions.map(
+			(qstn: {
+				format: string;
+				question: any;
+				selectedOption: any[];
+				options: { [x: string]: any };
+			}) => {
+				if (qstn.format === "dropdown") {
+					return {
+						question: qstn.question,
+						selectedOption: qstn.selectedOption[0],
+					};
+				} else {
+					return {
+						question: qstn.question,
+						selectedOption: qstn.selectedOption.map(
+							(id: string | number) => {
+								return qstn.options[id];
+							}
+						),
+					};
+				}
+			}
+		);
 
 		console.log("Submitted form: ", formData);
 	}
@@ -135,9 +158,17 @@ class DynamicForm extends React.Component<any, any> {
 									key={`qstn${i}`}
 									className="displayQuestions container d-flex flex-column shadow p-3 mb-4"
 								>
-									<p>
-										{i + 1}. {qstn.question}
-									</p>
+									<div className="d-flex justify-content-between">
+										<p>
+											{i + 1}. {qstn.question}
+										</p>
+										<FontAwesomeIcon
+											icon={faTrash}
+											onClick={() => {
+												this.removeQuestion(i);
+											}}
+										/>
+									</div>
 
 									{qstn.format === "dropdown" ? (
 										<select
@@ -286,10 +317,15 @@ class DynamicForm extends React.Component<any, any> {
 								</button>
 								<button
 									className="saveQstn ms-5"
-									onClick={this.saveQuestion}
+									onClick={this.addQuestion}
 								>
 									Add question
 								</button>
+							</div>
+
+							<div className="note mt-3">
+								** Note: Fill the question field and at least
+								one option to be able to add a question.
 							</div>
 						</div>
 					</div>
