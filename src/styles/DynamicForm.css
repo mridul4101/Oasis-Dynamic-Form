@@ -1,0 +1,66 @@
+.displayQuestions {
+    background-color: rgb(157, 199, 255);
+    border-radius: 6px;;
+}
+
+.displayOptions {
+    width: 50%;
+    padding: 6px;
+    border: none;
+    border-radius: 6px;
+}
+
+.optionLabel {
+    padding: 4px 12px;
+}
+
+.inputForm {
+    background-color: rgb(123, 173, 237);
+    border-radius: 6px;;
+}
+
+.qstnType, .options, .newOption {
+    width: 100%;
+}
+
+#question {
+    width: 80%;
+    margin-right: 22px;
+}
+
+#ansFormat {
+    padding: 6px;
+    border: none;
+    border-radius: 6px;
+}
+
+#newOption {
+    width: 100%;
+}
+
+input {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+}
+
+.saveForm, .submitForm {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+}
+
+.addOption, .saveQstn {
+    padding: 8px 12px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 5px;
+}
+
+.addOption {
+    background-color: rgb(90, 255, 200);
+}
+
+.saveQstn {
+    background-color: rgb(37, 251, 29);
+}
